@@ -29,7 +29,7 @@
     </main>
 
     <footer class="bg-white border-t border-slate-200 py-4 text-center text-sm text-slate-500">
-      <p>&copy; 2026 DepaRent, Inc. Todos los derechos reservados.</p>
+      <p>&copy; 2026 DepaRent, Inc. Todos los Derechos reservados.</p>
     </footer>
 
   </div>

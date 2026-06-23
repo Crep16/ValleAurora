@@ -17,7 +17,7 @@
         exact-active-class="bg-white text-indigo-700 shadow-sm font-semibold"
         inactive-class="text-indigo-100 hover:bg-indigo-700/50 hover:text-white"
       >
-        Alta de Empleados
+        Alta De Empleados
       </RouterLink>
 
       <RouterLink 

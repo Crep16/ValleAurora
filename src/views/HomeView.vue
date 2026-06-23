@@ -10,7 +10,7 @@ import NavBar from '../components/NavBar.vue'
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm min-h-[300px]">
         <h2 class="text-xl font-bold text-slate-800 mb-4">Dashboard de Control de Rentas</h2>
-        <p class="text-slate-600 text-sm mb-4">Selecciona un módulo en la barra de navegación superior para comenzar a administrar los registros de la propiedad.</p>
+        <p class="text-slate-600 text-sm mb-4">Selecciona un modulo en la barra de navegación superior para comenzar a administrar los registros de la propiedad.</p>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
           <div class="p-4 bg-indigo-50/50 border border-indigo-100 rounded-xl">
