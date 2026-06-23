@@ -58,17 +58,13 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-/**DashBoard y Menu */
 import DashboardLayout from '../layouts/DashboardLayout.vue'
 import NavBar from '../components/NavBar.vue'
 
-// ─── API Key ─────────────────────────────────────────────────────
-// La API Key debe tener habilitada la biblioteca "Maps JavaScript API"
-// y el Map ID se crea en: console.cloud.google.com → Google Maps → Map Management
+
 const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
 const MAP_ID  = import.meta.env.VITE_GOOGLE_MAPS_ID
 
-// ─── Estado ──────────────────────────────────────────────────────
 const mapaRef      = ref(null)
 const cargando = ref(true)
 const status    = ref('cargando')
@@ -78,16 +74,12 @@ const coords       = ref({ lat: 0, lng: 0 })
 let map    = null
 let marker = null
 
-// ─── 1. Cargar script de Google Maps con librería "marker" ───────
-// AdvancedMarkerElement requiere importar la biblioteca "marker"
-// y que el Map tenga un mapId configurado.
 function cargarGoogleMaps() {
   return new Promise((resolve, reject) => {
     if (window.google?.maps) { resolve(); return }
     const cb = '__gmInit'
     window[cb] = () => { delete window[cb]; resolve() }
     const s = document.createElement('script')
-    // Agrega "marker" a las libraries para usar AdvancedMarkerElement
     s.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=marker&callback=${cb}&loading=async`
     s.async = true
     s.defer = true
@@ -96,7 +88,6 @@ function cargarGoogleMaps() {
   })
 }
 
-// ─── 2. Geolocalización del navegador ────────────────────────────
 function obtenerUbicacion() {
   return new Promise((resolve, reject) => {
     if (!navigator.geolocation) {
@@ -118,7 +109,6 @@ function obtenerUbicacion() {
   })
 }
 
-// ─── 3. Inicializar mapa + marcador ──────────────────────────────
 async function init() {
   try {
     const [, posicion] = await Promise.all([
@@ -129,7 +119,6 @@ async function init() {
     coords.value   = posicion
     status.value = 'ok'
 
-    // Map ID es obligatorio para AdvancedMarkerElement
     map = new window.google.maps.Map(mapaRef.value, {
       center: posicion,
       zoom: 16,
@@ -139,10 +128,8 @@ async function init() {
       fullscreenControl: true,
     })
 
-    // Importar AdvancedMarkerElement desde la biblioteca "marker"
     const { AdvancedMarkerElement } = await window.google.maps.importLibrary('marker')
 
-    // Elemento HTML personalizado para el pin
     const pinEl = document.createElement('div')
     pinEl.innerHTML = `
       <div style="
@@ -159,7 +146,6 @@ async function init() {
       content: pinEl,
     })
 
-    // InfoWindow al hacer clic
     const infoWindow = new window.google.maps.InfoWindow({
       content: `
         <div style="font-family:system-ui,sans-serif;padding:4px 6px">
@@ -181,7 +167,6 @@ async function init() {
     geoError.value  = err.message
     cargando.value = false
 
-    // Mapa genérico si falló la geolocalización
     await cargarGoogleMaps().catch(() => {})
     if (window.google?.maps && mapaRef.value) {
       map = new window.google.maps.Map(mapaRef.value, {
@@ -195,7 +180,6 @@ async function init() {
   }
 }
 
-// ─── Centrar mapa ─────────────────────────────────────────────────
 function centrarEnMiUbicacion() {
   if (map && coords.value.lat) {
     map.panTo(coords.value)
@@ -203,7 +187,6 @@ function centrarEnMiUbicacion() {
   }
 }
 
-// ─── Ciclo de vida ────────────────────────────────────────────────
 onMounted(() => init())
 
 onUnmounted(() => {
