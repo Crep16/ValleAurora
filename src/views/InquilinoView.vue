@@ -32,7 +32,7 @@ const inquilinosMock = [
               <td class="p-3 font-medium text-slate-800">{{ i.nombre }}</td>
               <td class="p-3">{{ i.depto }}</td>
               <td class="p-3">
-                <span :class="['px-2 py-0.5 rounded text-xs font-semibold', i.estatus === 'Al Corriente' ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700']">
+                <span :class="['px-2 py-0.5 rounded text-xs font-semibold', i.estatus === 'Al corriente' ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700']">
                   {{ i.estatus }}
                 </span>
               </td>

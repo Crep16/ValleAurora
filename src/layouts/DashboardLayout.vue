@@ -6,7 +6,7 @@
         
         <div class="flex justify-between items-center border-b border-indigo-500/40 pb-3">
           <div class="flex items-center gap-2">
-            <span class="text-2xl font-bold tracking-wider"> 👰🏼 Ruba Studio</span>
+            <span class="text-2xl font-bold tracking-wider"> Valle Aurora</span>
           </div>
           <div class="flex items-center gap-4">
             <button class="hover:bg-indigo-700 p-2 rounded-full transition-colors relative">
@@ -29,7 +29,7 @@
     </main>
 
     <footer class="bg-white border-t border-slate-200 py-4 text-center text-sm text-slate-500">
-      <p>&copy; 2026 DepaRent, Inc. Todos los Derechos reservados.</p>
+      <p>&copy; 2026 Valle Aurora, Inc. Todos los derechos reservados.</p>
     </footer>
 
   </div>
