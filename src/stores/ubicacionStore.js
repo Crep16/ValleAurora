@@ -11,34 +11,34 @@ import {
 } from '@/services/ubicacionService'
 
 const FORM_VACIO = () => ({
-  nombre:     '',
-  calle:      '',
-  numero:     '',
-  colonia:    '',
-  ciudad:     '',
-  estado:     '',
-  cp:         '',
-  telefono:   '',
-  celular:    '',
-  correo:     '',
-  latitud:    null,
-  longitud:   null,
+  nombre: '',
+  calle: '',
+  numero: '',
+  colonia: '',
+  ciudad: '',
+  estado: '',
+  cp: '',
+  telefono: '',
+  celular: '',
+  correo: '',
+  latitud: null,
+  longitud: null,
   referencia: '',
 })
 
 export const useUbicacionStore = defineStore('ubicacion', () => {
 
   // Estado
-  const lista          = ref([])
-  const seleccionada   = ref(null)
-  const form           = ref(FORM_VACIO())
-  const modoEdicion    = ref(false)
-  const cargando       = ref(false)
-  const guardando      = ref(false)
-  const eliminando     = ref(false)
+  const lista = ref([])
+  const seleccionada = ref(null)
+  const form = ref(FORM_VACIO())
+  const modoEdicion = ref(false)
+  const cargando = ref(false)
+  const guardando = ref(false)
+  const eliminando = ref(false)
   const geocodificando = ref(false)
-  const error          = ref(null)
-  const exito          = ref(null)
+  const error = ref(null)
+  const exito = ref(null)
 
   // Getters
   const totalUbicaciones = computed(() => lista.value.length)
@@ -149,9 +149,9 @@ export const useUbicacionStore = defineStore('ubicacion', () => {
     try {
       const direccion = await geocodificarInverso(lat, lng)
       Object.entries(direccion).forEach(([k, v]) => {
-        if (!form.value[k]) form.value[k] = v
+        if (v) form.value[k] = v      //<= solucion
       })
-      form.value.latitud  = lat
+      form.value.latitud = lat
       form.value.longitud = lng
     } catch (e) {
       error.value = e.message
@@ -166,13 +166,26 @@ export const useUbicacionStore = defineStore('ubicacion', () => {
   }
 
   return {
-    lista, seleccionada, form, modoEdicion,
-    cargando, guardando, eliminando, geocodificando,
-    error, exito,
-    totalUbicaciones, tieneCoordenadas, posicionMapa,
+    lista,
+    seleccionada, 
+    form, 
+    modoEdicion,
+    cargando, 
+    guardando, 
+    eliminando, 
+    geocodificando,
+    error, 
+    exito,
+    totalUbicaciones, 
+    tieneCoordenadas, 
+    posicionMapa,
     cargarLista,
-    iniciarCrear, iniciarEditar,
-    guardar, eliminar,
-    usarMiUbicacion, autocompletarDesdeCoordenadas, actualizarCoordenadas,
+    iniciarCrear, 
+    iniciarEditar,
+    guardar, 
+    eliminar,
+    usarMiUbicacion, 
+    autocompletarDesdeCoordenadas, 
+    actualizarCoordenadas,
   }
 })
